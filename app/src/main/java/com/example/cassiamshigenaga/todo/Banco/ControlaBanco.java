@@ -2,6 +2,7 @@ package com.example.cassiamshigenaga.todo.Banco;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 
 public class ControlaBanco {
@@ -31,6 +32,20 @@ public class ControlaBanco {
         else {
             return "Dado inserido com sucesso";
         }
+    }
 
+    //leitura dos dados - Cursor
+    public Cursor carregaDados(){
+        Cursor cursor;
+        String [] campos = {" _id", "titulo"};
+        db = banco.getReadableDatabase();
+        cursor = db.query("tarefa", campos, null, null, null, null, null);
+
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+
+        db.close();
+        return cursor;
     }
 }
