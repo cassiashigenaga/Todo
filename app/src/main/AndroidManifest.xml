@@ -16,7 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ListaActivity"></activity>
+        <activity android:name=".ListaActivity" />
+        <activity android:name=".Banco.Main2Activity" />
+        <activity android:name=".AtualizaActivity"></activity>
     </application>
 
 </manifest>

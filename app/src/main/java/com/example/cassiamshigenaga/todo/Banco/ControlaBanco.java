@@ -66,7 +66,7 @@ public class ControlaBanco {
     //Declarando um método público do tipo Cursor que não recebe nenhum parâmetro
     public Cursor carregaDados(){
 
-        //Objeto "cursor" do tipo "Cursor"
+        //Objeto "cursor" do tipo/classe "Cursor"
         Cursor cursor;
 
         //Um array de String com o nome "campos" que recebe os valores entre as chaves
@@ -89,6 +89,28 @@ public class ControlaBanco {
         //close é o método do objeto "db" que não recebe nenhum parâmetro, que fecha o banco de dados(db)
         db.close();
         //retorna o objeto cursor no método
+        return cursor;
+    }
+
+    public void deletaDado (int id){
+        String where = "_id = " + id;
+        db = banco.getReadableDatabase();
+        db.delete("tarefa", where, null);
+        db.close();
+    }
+
+    public Cursor carregaDadoPorId(int id){
+        Cursor cursor;
+        String [] campos = {"_id", "nome"};
+        String where = "_id = " + id;
+        db = banco.getReadableDatabase();
+        cursor = db.query("tarefa", campos, where, null, null, null, null);
+
+        if(cursor != null){
+            cursor.moveToFirst();
+        }
+
+        db.close();
         return cursor;
     }
 }
