@@ -113,4 +113,17 @@ public class ControlaBanco {
         db.close();
         return cursor;
     }
+
+    public void alteraDado (int id, String nome){
+     ContentValues valores;
+     String where;
+
+     db = banco.getWritableDatabase();
+     where = "_id=" + id;
+     valores = new ContentValues();
+     valores.put("nome", nome);
+
+     db.update("tarefa", valores, where, null);
+     db.close();
+    }
 }
